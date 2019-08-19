@@ -84,15 +84,19 @@ def get_inputs(list_labels, title):
             [<user_input_1>, <user_input_2>, <user_input_3>]
     """
     inputs = []
-
     # your code
+    print(title)
+    for label in list_labels:
+        inputs.append(input(f'{label} '))
 
     return inputs
 
+
 def get_choice(options):
-    print_menu("Main menu",options, "Exit program")
+    print_menu("Main menu", options, "Exit program")
     inputs = get_inputs(["Please enter a number: "], "")
     return inputs[0]
+
 
 def print_error_message(message):
     """
