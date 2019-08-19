@@ -22,7 +22,34 @@ def print_table(table, title_list):
         None: This function doesn't return anything it only prints to console.
     """
 
-    # your goes code
+    max_length = []
+    for element in title_list:
+        max_length.append(len(element))
+
+    for single_list in table:
+        for i in range(len(title_list)):
+            if len(single_list[i]) > max_length[i]:
+                max_length[i] = len(single_list[i])
+
+    total_length = 0
+    for element in max_length:
+        total_length += element
+
+    print("/", "-" * (total_length+len(max_length)-1), "\\", sep="")
+
+    for i in range(len(title_list)):
+        print("|", title_list[i].center(max_length[i]), sep="", end="")
+    print("|")
+
+    for single_list in table:
+        for i in range(len(max_length)):
+            print("|", "-" * (max_length[i]), sep="", end="")
+        print("|")
+        for i in range(len(single_list)):
+            print("|", single_list[i].center(max_length[i]), sep="", end="")
+        print("|")
+
+    print("\\", "-" * (total_length+len(max_length)-1), "/", sep="")
 
 
 def print_result(result, label):
