@@ -15,6 +15,14 @@ from model import data_manager
 from model import common
 
 
+ID = 0
+TITLE = 1
+PRICE = 2
+MONTH = 3
+DAY = 4
+YEAR = 5
+
+
 def add(table, record):
     """
     Add new record to table
@@ -27,9 +35,7 @@ def add(table, record):
         list: Table with a new record
     """
     # your code
-    id_ = common.generate_random(table)
-    record.insert(0, id_)
-    table.append(record)
+
     return table
 
 
@@ -46,7 +52,7 @@ def remove(table, id_):
     """
 
     # your code
-
+    table = [record for record in table if record[ID] != id_]
     return table
 
 

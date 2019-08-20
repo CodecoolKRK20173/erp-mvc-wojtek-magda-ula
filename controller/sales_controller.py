@@ -47,7 +47,11 @@ def run():
             updated_table = sales.add(table, sale)
             common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "2":
-            pass
+            index = terminal_view.get_inputs(
+                ['Choose Id of a sale to be removed: '], '')
+            id_ = common.find_id(table, int(index[0]))
+            updated_table = sales.remove(table, id_)
+            common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "3":
             pass
         elif choice == "4":
