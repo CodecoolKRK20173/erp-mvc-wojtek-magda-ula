@@ -19,7 +19,7 @@ def run():
     options = ["Add a new game",
                "Remove a game",
                "Update a game",
-               "See count of game kinds for each manufacturer",
+               "See count of games for each manufacturer",
                "See the average games stock for an specific manufacturer"]
     title_list = ['Id',
                   'Title',
@@ -64,7 +64,7 @@ def run():
             updated_table = store.update(table, id_, game)
             common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "4":
-            store.get_counts_by_manufacturers()
+            store.get_counts_by_manufacturers(table)
         elif choice == "5":
             store.get_average_by_manufacturer()
         elif choice == "0":
