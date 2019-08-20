@@ -97,6 +97,8 @@ def get_counts_by_manufacturers(table):
     """
 
     # your code
+    list_of_manufacturers = [element[MANUFACTURER] for element in table]
+    return {element[MANUFACTURER]: list_of_manufacturers.count(element[MANUFACTURER]) for element in table}
 
 
 def get_average_by_manufacturer(table, manufacturer):
