@@ -4,6 +4,10 @@ implement commonly used functions here
 import random
 
 
+def find_id(table, index):
+    return table[index][0]
+
+
 def generate_random(table):
     """
     Generates random and unique string. Used for id/key generation:

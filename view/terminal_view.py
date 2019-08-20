@@ -54,7 +54,7 @@ def print_table(table, title_list):
 
 def print_result(result, label):
     
-    print(label + ": " + str(result))
+    
     """
     Displays results of the special functions.
 
@@ -65,18 +65,11 @@ def print_result(result, label):
     Returns:
         None: This function doesn't return anything it only prints to console.
     """
-
+    print(label + ": " + str(result))
     
 
 
 def print_menu(title, list_options, exit_message):
-    
-    print("{}:".format(title))                                                      # title
-    for index_menu in range(len(list_options)):                                     # list_options
-        print("\t({}) {}".format(index_menu + 1, list_options[index_menu]))
-    print("\t(0) {}".format(exit_message))                                          # exit_message
-    
-    
     
     """
     Displays a menu. Sample output:
@@ -97,7 +90,11 @@ def print_menu(title, list_options, exit_message):
     Returns:
         None: This function doesn't return anything it only prints to console.
     """
-
+    print("{}:".format(title))                                                      # title
+    for index_menu in range(len(list_options)):                                     # list_options
+        print("\t({}) {}".format(index_menu + 1, list_options[index_menu]))
+    print("\t(0) {}".format(exit_message))                                          # exit_message
+    
     
 
 
