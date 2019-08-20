@@ -20,17 +20,34 @@ def run():
                "See the average profit in a given year"]
     
     choice = None
+    table = common.get_table('/model/accounting/items.csv')
     while choice != "0":
         choice = terminal_view.get_choice(options)
+
         if choice == "1":
-            accounting.add()
+            print("Please provide data you wish to add: ")
+            record = []
+            record[0] = ''
+            record[1] = input('Please provide a month of the transaction: ')
+            record[2] = input('Please provide a day of the transaction: ')
+            record[3] = input('Please provide a year of the transaction: ')
+            record[4] = input('Please provide a type of the transaction (in = income, out = outflow): ')
+            is_running = True
+            while is_running:
+                try:
+                    record[5] = int(input('Please provide amount of transaction in USD: ))
+                    is_running = False
+                except ValueError:
+                    print('The value is not an integer!')
+            accounting.add(table, record)
+            
         elif choice == "2":
-            accounting.remove()
+            accounting.remove(table, id_)
         elif choice == "3":
-            accounting.update()
+            accounting.update(table, id_, record)
         elif choice == "4":
-            accounting.which_year_max()
+            accounting.which_year_max(table)
         elif choice == "5":
-            accounting.avg_amount()
+            accounting.avg_amount(table, year)
         else:
             terminal_view.print_error_message("There is no such choice.")
