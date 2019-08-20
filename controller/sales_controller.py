@@ -3,6 +3,7 @@ from view import terminal_view
 from model.sales import sales
 from controller import common
 
+
 def run():
     """
     Starts this module and displays its menu.
@@ -36,7 +37,15 @@ def run():
             'Back to main menu')
 
         if choice == "1":
-            pass
+            sale = terminal_view.get_inputs(
+                ['Title',
+                 'Price',
+                 'Month',
+                 'Day',
+                 'Year'],
+                'Please provide sale information: ')
+            updated_table = sales.add(table, sale)
+            common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "2":
             pass
         elif choice == "3":
