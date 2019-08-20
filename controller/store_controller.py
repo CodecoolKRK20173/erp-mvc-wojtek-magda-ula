@@ -64,10 +64,16 @@ def run():
             updated_table = store.update(table, id_, game)
             common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "4":
-            terminal_view.print_result(store.get_counts_by_manufacturers(
-                table), 'Count of games available for each manufacturer: ')
+            count = store.get_counts_by_manufacturers(table)
+            terminal_view.print_result(
+                count, 'Count of games available for each manufacturer: ')
         elif choice == "5":
-            store.get_average_by_manufacturer()
+            manufacturer = terminal_view.get_inputs(
+                ['Manufacturer: '], '')
+            average_stock = store.get_average_by_manufacturer(
+                table, manufacturer[0])
+            terminal_view.print_result(
+                str(average_stock), 'Average game stock: ')
         elif choice == "0":
             is_running = False
         else:
