@@ -68,6 +68,14 @@ def print_result(result, label):
 
 
 def print_menu(title, list_options, exit_message):
+    
+    print("{}:".format(title))                                                      # title
+    for index_menu in range(len(list_options)):                                     # list_options
+        print("\t({}) {}".format(index_menu + 1, list_options[index_menu]))
+    print("\t(0) {}".format(exit_message))                                          # exit_message
+    
+    
+    
     """
     Displays a menu. Sample output:
         Main menu:
@@ -88,7 +96,7 @@ def print_menu(title, list_options, exit_message):
         None: This function doesn't return anything it only prints to console.
     """
 
-    # your code
+    
 
 
 def get_inputs(list_labels, title):
