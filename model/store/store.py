@@ -71,18 +71,14 @@ def update(table, id_, record):
 
     # your code
 
-    def find_record_index(id):
+    def find_record_index(id_):
         for index, record in enumerate(table):
-            if record[ID] == id:
+            if record[ID] == id_:
                 return index
 
     record_index = find_record_index(id_)
 
-    table[record_index][TITLE],
-    table[record_index][MANUFACTURER],
-    table[record_index][PRICE],
-    table[record_index][IN_STOCK] = record
-
+    table[record_index][TITLE], table[record_index][MANUFACTURER], table[record_index][PRICE], table[record_index][IN_STOCK] = record
     return table
 
 

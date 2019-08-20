@@ -43,16 +43,26 @@ def run():
                  'in stock'],
                 'Please provide game information')
             updated_table = store.add(table, game)
-            common.save_table_to_file(updated_table, 'model/store/games.csv')
+            common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "2":
             index = terminal_view.get_inputs(
                 ['Choose Id of the game to be removed: '], '')
             id_ = common.find_id(table, int(index[0]))
             updated_table = store.remove(table, id_)
-            common.save_table_to_file(updated_table, 'model/store/games.csv')
+            common.save_table_to_file(updated_table, DB_FILENAME)
 
         elif choice == "3":
-            store.update()
+            index = terminal_view.get_inputs(
+                ['Choose Id of the game to be edited: '], '')
+            id_ = common.find_id(table, int(index[0]))
+            game = terminal_view.get_inputs(
+                ['Title',
+                 'Manufacturer',
+                 'Price',
+                 'in stock'],
+                'Please provide updated information for this game: ')
+            updated_table = store.update(table, id_, game)
+            common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "4":
             store.get_counts_by_manufacturers()
         elif choice == "5":
