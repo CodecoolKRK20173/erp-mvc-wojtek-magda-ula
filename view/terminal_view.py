@@ -28,8 +28,12 @@ def print_table(table, title_list):
 
     for single_list in table:
         for i in range(len(title_list)):
-            if len(single_list[i]) > max_length[i]:
-                max_length[i] = len(single_list[i])
+            if i > 0:
+                if len(str(single_list[i])) > max_length[i]:
+                    max_length[i] = len(str(single_list[i]))
+            else:
+                if len(str(len(table))) > max_length[i]:
+                    max_length[i] = len(str(len(table)))
 
     total_length = 0
     for element in max_length:
@@ -41,12 +45,17 @@ def print_table(table, title_list):
         print("|", title_list[i].center(max_length[i]), sep="", end="")
     print("|")
 
+    serial_number = 0
     for single_list in table:
         for i in range(len(max_length)):
             print("|", "-" * (max_length[i]), sep="", end="")
         print("|")
         for i in range(len(single_list)):
-            print("|", single_list[i].center(max_length[i]), sep="", end="")
+            if i >0:
+                print("|", str(single_list[i]).center(max_length[i]), sep="", end="")
+            else:
+                print("|", str(serial_number).center(max_length[i]), sep="", end="") 
+                serial_number += 1       
         print("|")
 
     print("\\", "-" * (total_length+len(max_length)-1), "/", sep="")
@@ -141,3 +150,4 @@ def print_error_message(message):
     """
 
     print("Error:", message, sep=" ")
+
