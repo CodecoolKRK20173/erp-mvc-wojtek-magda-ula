@@ -15,7 +15,7 @@ def run():
     """
 
     # your code
-    table = common.get_table('model/store/games.csv')
+    DB_FILENAME = 'model/store/games.csv'
     options = ["Add a new game",
                "Remove a game",
                "Update a game",
@@ -28,6 +28,7 @@ def run():
                   'Stock']
     is_running = True
     while is_running is True:
+        table = common.get_table(DB_FILENAME)
         terminal_view.print_table(table, title_list)
         choice = terminal_view.get_choice(
             'Store menu',
@@ -44,7 +45,12 @@ def run():
             updated_table = store.add(table, game)
             common.save_table_to_file(updated_table, 'model/store/games.csv')
         elif choice == "2":
-            store.remove()
+            index = terminal_view.get_inputs(
+                ['Choose Id of the game to be removed: '], '')
+            id_ = common.find_id(table, int(index[0]))
+            updated_table = store.remove(table, id_)
+            common.save_table_to_file(updated_table, 'model/store/games.csv')
+
         elif choice == "3":
             store.update()
         elif choice == "4":
