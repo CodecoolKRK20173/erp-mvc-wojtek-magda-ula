@@ -64,7 +64,8 @@ def run():
             updated_table = store.update(table, id_, game)
             common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "4":
-            store.get_counts_by_manufacturers(table)
+            terminal_view.print_result(store.get_counts_by_manufacturers(
+                table), 'Count of games available for each manufacturer: ')
         elif choice == "5":
             store.get_average_by_manufacturer()
         elif choice == "0":
