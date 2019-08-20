@@ -36,11 +36,13 @@ def run():
 
         if choice == "1":
             game = terminal_view.get_inputs(
-                ['Title', 'Manufacturer', 'Price', 'in stock'],
+                ['Title',
+                 'Manufacturer',
+                 'Price',
+                 'in stock'],
                 'Please provide game information')
-            common.save_table_to_file(
-                store.add(table, game),
-                'model/store/games.csv')
+            updated_table = store.add(table, game)
+            common.save_table_to_file(updated_table, 'model/store/games.csv')
         elif choice == "2":
             store.remove()
         elif choice == "3":
