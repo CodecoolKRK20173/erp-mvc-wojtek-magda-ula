@@ -14,4 +14,3 @@ def save_table_to_file(table, file_name):
 
 def find_id(table, index):
     return table[index][0]
-    
