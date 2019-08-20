@@ -3,6 +3,7 @@ from view import terminal_view
 from model.accounting import accounting
 from controller import common
 
+
 def run():
     """
     Starts this module and displays its menu.
@@ -18,7 +19,7 @@ def run():
                "Update a record",
                "See the highest profit year",
                "See the average profit in a given year"]
-    
+
     choice = None
     table = common.get_table('/model/accounting/items.csv')
     while choice != "0":
@@ -31,16 +32,18 @@ def run():
             record[1] = input('Please provide a month of the transaction: ')
             record[2] = input('Please provide a day of the transaction: ')
             record[3] = input('Please provide a year of the transaction: ')
-            record[4] = input('Please provide a type of the transaction (in = income, out = outflow): ')
+            record[4] = input(
+                'Please provide a type of the transaction (in = income, out = outflow): ')
             is_running = True
             while is_running:
                 try:
-                    record[5] = int(input('Please provide amount of transaction in USD: ))
+                    record[5] = int(
+                        input('Please provide amount of transaction in USD:'))
                     is_running = False
                 except ValueError:
                     print('The value is not an integer!')
             accounting.add(table, record)
-            
+
         elif choice == "2":
             accounting.remove(table, id_)
         elif choice == "3":
