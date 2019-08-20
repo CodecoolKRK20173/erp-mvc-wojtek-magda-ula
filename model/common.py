@@ -18,7 +18,26 @@ def generate_random(table):
     """
 
     generated = ''
-
     # your code
+    table_ids = [row[0] for row in table]
+    generated = __generate()
+    while generated in table_ids:
+        generated = __generate()
 
     return generated
+
+
+def __generate():
+    special_characters = list(map(chr, range(33, 48)))
+    numbers = [str(number) for number in list(range(10))]
+    lowercase = list(map(chr, range(97, 123)))
+    uppercase = [chr.upper() for chr in lowercase]
+
+    id_special = random.choices(special_characters, k=2)
+    id_numbers = random.choices(numbers, k=2)
+    id_lowercase = random.choices(lowercase, k=2)
+    id_uppercase = random.choices(uppercase, k=2)
+
+    generated = id_special + id_numbers + id_lowercase + id_uppercase
+    random.shuffle(generated)
+    return ''.join(generated)
