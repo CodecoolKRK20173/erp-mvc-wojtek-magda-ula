@@ -53,8 +53,6 @@ def print_table(table, title_list):
 
 
 def print_result(result, label):
-    
-    
     """
     Displays results of the special functions.
 
@@ -66,11 +64,9 @@ def print_result(result, label):
         None: This function doesn't return anything it only prints to console.
     """
     print(label + ": " + str(result))
-    
 
 
 def print_menu(title, list_options, exit_message):
-    
     """
     Displays a menu. Sample output:
         Main menu:
@@ -90,12 +86,13 @@ def print_menu(title, list_options, exit_message):
     Returns:
         None: This function doesn't return anything it only prints to console.
     """
-    print("{}:".format(title))                                                      # title
-    for index_menu in range(len(list_options)):                                     # list_options
+    print("{}:".format(title)
+          )                                                      # title
+    # list_options
+    for index_menu in range(len(list_options)):
         print("\t({}) {}".format(index_menu + 1, list_options[index_menu]))
-    print("\t(0) {}".format(exit_message))                                          # exit_message
-    
-    
+    # exit_message
+    print("\t(0) {}".format(exit_message))
 
 
 def get_inputs(list_labels, title):
@@ -126,8 +123,8 @@ def get_inputs(list_labels, title):
     return inputs
 
 
-def get_choice(options):
-    print_menu("Main menu", options, "Exit program")
+def get_choice(menu_title, options, exit_message):
+    print_menu(menu_title, options, exit_message)
     inputs = get_inputs(["Please enter a number: "], "")
     return inputs[0]
 

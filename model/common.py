@@ -4,10 +4,6 @@ implement commonly used functions here
 import random
 
 
-def find_id(table, index):
-    return table[index][0]
-
-
 def generate_random(table):
     """
     Generates random and unique string. Used for id/key generation:
@@ -32,7 +28,7 @@ def generate_random(table):
 
 
 def __generate():
-    special_characters = list(map(chr, range(33, 48)))
+    special_characters = list(map(chr, range(33, 39))) + list(map(chr, range(40, 48)))
     numbers = [str(number) for number in list(range(10))]
     lowercase = list(map(chr, range(97, 123)))
     uppercase = [chr.upper() for chr in lowercase]

@@ -19,7 +19,7 @@ def run():
 
     choice = None
     while choice != "0":
-        choice = terminal_view.get_choice(options)
+        choice = terminal_view.get_choice('Main menu', options, 'Exit program')
         if choice == "1":
             store_controller.run()
         elif choice == "2":
