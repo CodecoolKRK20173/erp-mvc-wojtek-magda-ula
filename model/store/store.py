@@ -114,3 +114,10 @@ def get_average_by_manufacturer(table, manufacturer):
     """
 
     # your code
+    stock_amounts = [element[IN_STOCK]
+                     for element in table if element[MANUFACTURER].lower() == manufacturer.lower()]
+
+    sum_ = 0
+    for element in stock_amounts:
+        sum_ += int(element)
+    return sum_ / len(stock_amounts)
