@@ -23,7 +23,7 @@ def run():
     choice = None
     table = common.get_table('/model/accounting/items.csv')
     while choice != "0":
-        choice = terminal_view.get_choice(options)
+        choice = terminal_view.get_choice('Accounting menu', options, 'Back to main menu')
 
         if choice == "1":
             print("Please provide data you wish to add: ")
