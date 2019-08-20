@@ -53,6 +53,8 @@ def print_table(table, title_list):
 
 
 def print_result(result, label):
+    
+    print(label + ": " + str(result))
     """
     Displays results of the special functions.
 
@@ -64,7 +66,7 @@ def print_result(result, label):
         None: This function doesn't return anything it only prints to console.
     """
 
-    # your code
+    
 
 
 def print_menu(title, list_options, exit_message):
