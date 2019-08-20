@@ -15,11 +15,11 @@ def run():
     """
 
     # your code
-    DB_FILENAME = 'model/store/games.csv'
+    table = common.get_table('model/store/games.csv')
     options = ["Add a new game",
                "Remove a game",
                "Update a game",
-               "See count of games for each manufacturer",
+               "See count of game kinds for each manufacturer",
                "See the average games stock for an specific manufacturer"]
     title_list = ['Id',
                   'Title',
@@ -28,7 +28,6 @@ def run():
                   'Stock']
     is_running = True
     while is_running is True:
-        table = common.get_table(DB_FILENAME)
         terminal_view.print_table(table, title_list)
         choice = terminal_view.get_choice(
             'Store menu',
@@ -43,37 +42,15 @@ def run():
                  'in stock'],
                 'Please provide game information')
             updated_table = store.add(table, game)
-            common.save_table_to_file(updated_table, DB_FILENAME)
+            common.save_table_to_file(updated_table, 'model/store/games.csv')
         elif choice == "2":
-            index = terminal_view.get_inputs(
-                ['Choose Id of the game to be removed: '], '')
-            id_ = common.find_id(table, int(index[0]))
-            updated_table = store.remove(table, id_)
-            common.save_table_to_file(updated_table, DB_FILENAME)
-
+            store.remove()
         elif choice == "3":
-            index = terminal_view.get_inputs(
-                ['Choose Id of the game to be edited: '], '')
-            id_ = common.find_id(table, int(index[0]))
-            game = terminal_view.get_inputs(
-                ['Title',
-                 'Manufacturer',
-                 'Price',
-                 'in stock'],
-                'Please provide updated information for this game: ')
-            updated_table = store.update(table, id_, game)
-            common.save_table_to_file(updated_table, DB_FILENAME)
+            store.update()
         elif choice == "4":
-            count = store.get_counts_by_manufacturers(table)
-            terminal_view.print_result(
-                count, 'Count of games available for each manufacturer: ')
+            store.get_counts_by_manufacturers()
         elif choice == "5":
-            manufacturer = terminal_view.get_inputs(
-                ['Manufacturer: '], '')
-            average_stock = store.get_average_by_manufacturer(
-                table, manufacturer[0])
-            terminal_view.print_result(
-                str(average_stock), 'Average game stock: ')
+            store.get_average_by_manufacturer()
         elif choice == "0":
             is_running = False
         else:
