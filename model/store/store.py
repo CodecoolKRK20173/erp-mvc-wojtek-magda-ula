@@ -15,6 +15,10 @@ from model import common
 
 
 ID = 0
+TITLE = 1
+MANUFACTURER = 2
+PRICE = 3
+IN_STOCK = 4
 
 
 def add(table, record):
@@ -64,6 +68,18 @@ def update(table, id_, record):
     """
 
     # your code
+
+    def find_record_index(id):
+        for index, record in enumerate(table):
+            if record[ID] == id:
+                return index
+
+    record_index = find_record_index(id_)
+
+    table[record_index][TITLE],
+    table[record_index][MANUFACTURER],
+    table[record_index][PRICE],
+    table[record_index][IN_STOCK] = record
 
     return table
 
