@@ -87,6 +87,33 @@ def get_lowest_price_item_id(table):
     """
 
     # your code
+    def bubble_sort(lst):
+        for index in range(len(lst)):
+            for j in range(0, len(lst) - index - 1):
+                if lst[j] > lst[j+1]:
+                    lst[j], lst[j+1] = lst[j+1], lst[j]
+        return lst
+
+    min_price = 999
+    for sale in table:
+        try:
+            sale_price = int(sale[PRICE])
+        except ValueError:
+            sale_price = float(sale[PRICE])
+
+        if sale_price < min_price:
+            min_price = sale_price
+
+    lowest_priced_items = [sale[TITLE]
+                           for sale in table if sale[PRICE] == str(min_price)]
+
+    if len(lowest_priced_items) > 1:
+        lowest_priced_items_sorted = bubble_sort(lowest_priced_items)
+        result = lowest_priced_items_sorted[-1]
+    else:
+        result = lowest_priced_items[0]
+
+    return [sale[ID] for sale in table if sale[TITLE] == result][0]
 
 
 def get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to):

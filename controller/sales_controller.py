@@ -66,7 +66,8 @@ def run():
             updated_table = sales.update(table, id_, sale)
             common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "4":
-            pass
+            id_ = sales.get_lowest_price_item_id(table)
+            terminal_view.print_result(id_, 'ID: ')
         elif choice == "5":
             pass
         elif choice == "0":
