@@ -14,6 +14,13 @@ from model import data_manager
 from model import common
 
 
+ID = 0
+NAME = 1
+MANUFACTURER = 2
+PURCHASE_YEAR = 3
+DURABILITY = 4
+
+
 def add(table, record):
     """
     Add new record to table
@@ -27,7 +34,7 @@ def add(table, record):
     """
     # your code
 
-    return table
+    return common.add(table, record)
 
 
 def remove(table, id_):
@@ -44,7 +51,7 @@ def remove(table, id_):
 
     # your code
 
-    return table
+    return common.remove(table, id_)
 
 
 def update(table, id_, record):
@@ -62,7 +69,7 @@ def update(table, id_, record):
 
     # your code
 
-    return table
+    return common.update(table, id_, record)
 
 
 # special functions:
