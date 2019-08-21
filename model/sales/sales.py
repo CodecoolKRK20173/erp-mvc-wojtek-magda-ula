@@ -68,8 +68,7 @@ def update(table, id_, record):
     """
 
     # your code
-
-    return table
+    return common.update(table, id_, record)
 
 
 # special functions:
