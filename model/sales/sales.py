@@ -116,7 +116,7 @@ def get_lowest_price_item_id(table):
     return [sale[ID] for sale in table if sale[TITLE] == result][0]
 
 
-def get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to):
+def get_items_sold_between(table, *dates):
     """
     Question: Which items are sold between two given dates? (from_date < sale_date < to_date)
 
@@ -134,3 +134,15 @@ def get_items_sold_between(table, month_from, day_from, year_from, month_to, day
     """
 
     # your code
+    MONTH_FROM = 0
+    DAY_FROM = 1
+    YEAR_FROM = 2
+    MONTH_TO = 3
+    DAY_TO = 4
+    YEAR_TO = 5
+    dates = [int(date) for date in dates]
+    return [sale for sale in table
+            if dates[MONTH_FROM] <= int(sale[MONTH]) <= dates[MONTH_TO]
+            if dates[DAY_FROM] <= int(sale[DAY]) <= dates[DAY_TO]
+            if dates[YEAR_FROM] <= int(sale[YEAR]) <= dates[YEAR_TO]
+            ]
