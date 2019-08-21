@@ -29,7 +29,6 @@ def run():
     is_running = True
     while is_running is True:
         table = common.get_table(DB_FILENAME)
-        terminal_view.print_table(table, title_list)
         choice = terminal_view.get_choice(
             'Store menu',
             options,
@@ -45,6 +44,7 @@ def run():
             updated_table = store.add(table, game)
             common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "2":
+            terminal_view.print_table(table, title_list)
             index = terminal_view.get_inputs(
                 ['Choose Id of the game to be removed: '], '')
             id_ = common.find_id(table, int(index[0]))
@@ -52,6 +52,7 @@ def run():
             common.save_table_to_file(updated_table, DB_FILENAME)
 
         elif choice == "3":
+            terminal_view.print_table(table, title_list)
             index = terminal_view.get_inputs(
                 ['Choose Id of the game to be edited: '], '')
             id_ = common.find_id(table, int(index[0]))

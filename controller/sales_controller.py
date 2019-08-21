@@ -30,7 +30,6 @@ def run():
     is_running = True
     while is_running is True:
         table = common.get_table(DB_FILENAME)
-        terminal_view.print_table(table, title_list)
         choice = terminal_view.get_choice(
             'Sales menu',
             options,
@@ -47,12 +46,14 @@ def run():
             updated_table = sales.add(table, sale)
             common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "2":
+            terminal_view.print_table(table, title_list)
             index = terminal_view.get_inputs(
                 ['Choose Id of a sale to be removed: '], '')
             id_ = common.find_id(table, int(index[0]))
             updated_table = sales.remove(table, id_)
             common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "3":
+            terminal_view.print_table(table, title_list)
             index = terminal_view.get_inputs(
                 ['Choose Id of the sale to be edited: '], '')
             id_ = common.find_id(table, int(index[0]))
