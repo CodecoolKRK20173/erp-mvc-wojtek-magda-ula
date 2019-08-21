@@ -48,6 +48,8 @@ def run():
         elif choice == "5":
             user_year = terminal_view.get_inputs(['Year: '], "Please provide a year: ")
             year = user_year[0]
-            accounting.avg_amount(table, year)
+            result = accounting.avg_amount(table, year)
+            label = 'The average (per item) profit is'
+            terminal_view.print_result(result, label)
         else:
             terminal_view.print_error_message("There is no such choice.")

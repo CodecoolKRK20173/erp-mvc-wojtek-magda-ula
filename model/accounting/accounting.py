@@ -143,6 +143,6 @@ def avg_amount(table, year):
     profit = float(year_profit[year])
     items_count = float(year_items_count[year])
 
-    return int(profit/items_count)
+    return str(round((profit/items_count),2))
     
 
