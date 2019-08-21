@@ -141,8 +141,16 @@ def get_items_sold_between(table, *dates):
     DAY_TO = 4
     YEAR_TO = 5
     dates = [int(date) for date in dates]
-    return [sale for sale in table
-            if dates[MONTH_FROM] <= int(sale[MONTH]) <= dates[MONTH_TO]
-            if dates[DAY_FROM] <= int(sale[DAY]) <= dates[DAY_TO]
-            if dates[YEAR_FROM] <= int(sale[YEAR]) <= dates[YEAR_TO]
-            ]
+
+    def is_within_date_range(sale_year, sale_month, sale_day, dates):
+        if not dates[YEAR_FROM] <= int(sale_year) <= dates[YEAR_TO]:
+            return False
+        if int(sale_year) == dates[YEAR_FROM] or int(sale_year) == dates[YEAR_TO]:
+            if not dates[MONTH_FROM] <= int(sale_month) <= dates[MONTH_TO]:
+                return False
+            if int(sale_month) == dates[MONTH_FROM] or int(sale_month) == dates[MONTH_TO]:
+                if not dates[DAY_FROM] <= int(sale_day) <= dates[DAY_TO]:
+                    return False
+        return True
+
+    return [sale for sale in table if is_within_date_range(sale[YEAR], sale[MONTH], sale[DAY], dates)]
