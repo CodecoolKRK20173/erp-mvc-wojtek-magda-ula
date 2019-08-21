@@ -81,7 +81,32 @@ def which_year_max(table):
         number
     """
 
-    # your code
+    year_index = 3
+    type_index = 4
+    amount_index = 5
+    year_profit = {}
+    max_profit = 0
+    for single_list in table:
+        if single_list[year_index] in year_profit.keys():
+            if single_list[type_index] == "in":
+                year_profit[single_list[year_index]] += float(single_list[amount_index])
+            elif single_list[type_index] == "out":
+                year_profit[single_list[year_index]] -= float(single_list[amount_index])
+        else:
+            if single_list[type_index] == "in":
+                year_profit[single_list[year_index]] = float(single_list[amount_index])
+            elif single_list[type_index] == "out":
+                year_profit[single_list[year_index]] = -(float(single_list[amount_index]))
+    for key, value in year_profit.items():
+        if value > max_profit:
+            max_profit = value
+            max_profit_year = key
+    
+    return str(max_profit_year)
+
+           
+
+
 
 
 def avg_amount(table, year):
@@ -96,4 +121,28 @@ def avg_amount(table, year):
         number
     """
 
-    # your code
+    year_index = 3
+    type_index = 4
+    amount_index = 5
+    year_profit = {}
+    year_items_count = {}
+    for single_list in table:
+        if single_list[year_index] in year_profit.keys():
+            if single_list[type_index] == "in":
+                year_profit[single_list[year_index]] += float(single_list[amount_index])
+            elif single_list[type_index] == "out":
+                year_profit[single_list[year_index]] -= float(single_list[amount_index])
+            year_items_count[single_list[year_index]] += 1
+        else:
+            if single_list[type_index] == "in":
+                year_profit[single_list[year_index]] = float(single_list[amount_index])
+            elif single_list[type_index] == "out":
+                year_profit[single_list[year_index]] = -(float(single_list[amount_index]))
+            year_items_count[single_list[year_index]] = 1
+    
+    profit = float(year_profit[year])
+    items_count = float(year_items_count[year])
+
+    return str(round((profit/items_count),2))
+    
+

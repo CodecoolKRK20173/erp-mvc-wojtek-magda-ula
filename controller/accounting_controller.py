@@ -42,10 +42,14 @@ def run():
             id_ = common.find_id(table, index)
             accounting.update(table, id_, record)
         elif choice == "4":
-            accounting.which_year_max(table)
+            result = accounting.which_year_max(table)
+            label = 'A year of the highest profit is'
+            terminal_view.print_result(result, label)
         elif choice == "5":
             user_year = terminal_view.get_inputs(['Year: '], "Please provide a year: ")
-            year = int(user_year[0])
-            accounting.avg_amount(table, year)
+            year = user_year[0]
+            result = accounting.avg_amount(table, year)
+            label = 'The average (per item) profit is'
+            terminal_view.print_result(result, label)
         else:
             terminal_view.print_error_message("There is no such choice.")
