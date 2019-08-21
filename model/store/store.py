@@ -97,6 +97,14 @@ def get_counts_by_manufacturers(table):
     """
 
     # your code
+    def get_count_for_single_manufacturer(manufacturer):
+        count = 0
+        for element in table:
+            if element[MANUFACTURER] == manufacturer:
+                count += 1
+        return count
+
+    return {element[MANUFACTURER]: get_count_for_single_manufacturer(element[MANUFACTURER]) for element in table}
 
 
 def get_average_by_manufacturer(table, manufacturer):
@@ -112,3 +120,10 @@ def get_average_by_manufacturer(table, manufacturer):
     """
 
     # your code
+    stock_amounts = [element[IN_STOCK]
+                     for element in table if element[MANUFACTURER].lower() == manufacturer.lower()]
+
+    sum_ = 0
+    for element in stock_amounts:
+        sum_ += int(element)
+    return sum_ / len(stock_amounts)
