@@ -89,12 +89,13 @@ def get_lowest_price_item_id(table):
     """
 
     # your code
-    def bubble_sort(lst):
-        for index in range(len(lst)):
-            for j in range(0, len(lst) - index - 1):
-                if lst[j] > lst[j+1]:
-                    lst[j], lst[j+1] = lst[j+1], lst[j]
-        return lst
+    def bubble_sort(sales):
+        TITLE = 0
+        for iterations in range(len(sales)):
+            for i in range(0, len(sales) - iterations - 1):
+                if sales[i][TITLE] > sales[i + 1][TITLE]:
+                    sales[i], sales[i + 1] = sales[i + 1], sales[i]
+        return sales
 
     min_price = MAX_PRICE
     for sale in table:
@@ -106,16 +107,14 @@ def get_lowest_price_item_id(table):
         if sale_price < min_price:
             min_price = sale_price
 
-    lowest_priced_items = [sale[TITLE]
+    lowest_priced_items = [[sale[TITLE], sale[ID]]
                            for sale in table if sale[PRICE] == str(min_price)]
 
     if len(lowest_priced_items) > 1:
         lowest_priced_items_sorted = bubble_sort(lowest_priced_items)
-        result = lowest_priced_items_sorted[-1]
+        return lowest_priced_items_sorted[-1][1]
     else:
-        result = lowest_priced_items[0]
-
-    return [sale[ID] for sale in table if sale[TITLE] == result][0]
+        return lowest_priced_items[0][1]
 
 
 def get_items_sold_between(table, dates):
