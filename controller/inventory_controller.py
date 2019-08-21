@@ -64,7 +64,8 @@ def run():
             updated_table = inventory.update(table, id_, item)
             common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "4":
-            pass
+            filtered_table = inventory.get_available_items(table)
+            terminal_view.print_table(filtered_table, title_list)
         elif choice == "5":
             pass
         elif choice == "0":
