@@ -15,6 +15,13 @@ from model import data_manager
 from model import common
 
 
+ID_INDEX = 0
+MONTH_INDEX = 1
+DAY_INDEX = 2
+YEAR_INDEX = 3
+TYPE_INDEX = 4
+AMOUNT_INDEX = 5
+
 
 def add(table, record):
     """
@@ -29,7 +36,7 @@ def add(table, record):
     """
     # your code
 
-    return table
+    return common.add(table, record)
 
 
 def remove(table, id_):
@@ -46,7 +53,7 @@ def remove(table, id_):
 
     # your code
 
-    return table
+    return common.remove(table, id_)
 
 
 def update(table, id_, record):
@@ -64,7 +71,7 @@ def update(table, id_, record):
 
     # your code
 
-    return table
+    return common.update(table, id_, record)
 
 
 # special functions:
@@ -81,22 +88,19 @@ def which_year_max(table):
         number
     """
 
-    year_index = 3
-    type_index = 4
-    amount_index = 5
     year_profit = {}
     max_profit = 0
     for single_list in table:
-        if single_list[year_index] in year_profit.keys():
-            if single_list[type_index] == "in":
-                year_profit[single_list[year_index]] += float(single_list[amount_index])
-            elif single_list[type_index] == "out":
-                year_profit[single_list[year_index]] -= float(single_list[amount_index])
+        if single_list[YEAR_INDEX] in year_profit.keys():
+            if single_list[TYPE_INDEX] == "in":
+                year_profit[single_list[YEAR_INDEX]] += float(single_list[AMOUNT_INDEX])
+            elif single_list[TYPE_INDEX] == "out":
+                year_profit[single_list[YEAR_INDEX]] -= float(single_list[AMOUNT_INDEX])
         else:
-            if single_list[type_index] == "in":
-                year_profit[single_list[year_index]] = float(single_list[amount_index])
-            elif single_list[type_index] == "out":
-                year_profit[single_list[year_index]] = -(float(single_list[amount_index]))
+            if single_list[TYPE_INDEX] == "in":
+                year_profit[single_list[YEAR_INDEX]] = float(single_list[AMOUNT_INDEX])
+            elif single_list[TYPE_INDEX] == "out":
+                year_profit[single_list[YEAR_INDEX]] = -(float(single_list[AMOUNT_INDEX]))
     for key, value in year_profit.items():
         if value > max_profit:
             max_profit = value
@@ -120,25 +124,21 @@ def avg_amount(table, year):
     Returns:
         number
     """
-
-    year_index = 3
-    type_index = 4
-    amount_index = 5
     year_profit = {}
     year_items_count = {}
     for single_list in table:
-        if single_list[year_index] in year_profit.keys():
-            if single_list[type_index] == "in":
-                year_profit[single_list[year_index]] += float(single_list[amount_index])
-            elif single_list[type_index] == "out":
-                year_profit[single_list[year_index]] -= float(single_list[amount_index])
-            year_items_count[single_list[year_index]] += 1
+        if single_list[YEAR_INDEX] in year_profit.keys():
+            if single_list[TYPE_INDEX] == "in":
+                year_profit[single_list[YEAR_INDEX]] += float(single_list[AMOUNT_INDEX])
+            elif single_list[TYPE_INDEX] == "out":
+                year_profit[single_list[YEAR_INDEX]] -= float(single_list[AMOUNT_INDEX])
+            year_items_count[single_list[YEAR_INDEX]] += 1
         else:
-            if single_list[type_index] == "in":
-                year_profit[single_list[year_index]] = float(single_list[amount_index])
-            elif single_list[type_index] == "out":
-                year_profit[single_list[year_index]] = -(float(single_list[amount_index]))
-            year_items_count[single_list[year_index]] = 1
+            if single_list[TYPE_INDEX] == "in":
+                year_profit[single_list[YEAR_INDEX]] = float(single_list[AMOUNT_INDEX])
+            elif single_list[TYPE_INDEX] == "out":
+                year_profit[single_list[YEAR_INDEX]] = -(float(single_list[AMOUNT_INDEX]))
+            year_items_count[single_list[YEAR_INDEX]] = 1
     
     profit = float(year_profit[year])
     items_count = float(year_items_count[year])
