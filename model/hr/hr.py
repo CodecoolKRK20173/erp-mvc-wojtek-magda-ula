@@ -11,6 +11,10 @@ Data table structure:
 from model import data_manager
 from model import common
 
+ID = 0
+PERSON = 1
+YEAR = 2
+
 
 
 def add(table, record):
@@ -25,7 +29,10 @@ def add(table, record):
         list: Table with a new record
     """
     # your code
-
+    
+    id = common.generate_random(table)
+    record.insert(0, id)
+    table.append(record)
     return table
 
 
@@ -42,7 +49,7 @@ def remove(table, id_):
     """
 
     # your code
-
+    table = [record for record in table if record[ID] != id_]
     return table
 
 
@@ -60,7 +67,13 @@ def update(table, id_, record):
     """
 
     # your code
+    def find_record_index(id_):
+        for index, record in enumerate(table):
+            if record[ID] == id_:
+                return index
 
+    record_index = find_record_index(id_)
+    table[record_index][PERSON], table[record_index][YEAR] = record
     return table
 
 
