@@ -20,26 +20,32 @@ def run():
                "See the highest profit year",
                "See the average profit in a given year"]
     
-    table = common.get_table('/model/accounting/items.csv')
+    table = common.get_table('model/accounting/items.csv')
     title_list = ['Id','Month','Day', 'Year', 'Type', 'Amount (USD)']
-    choice = terminal_view.get_choice(options)
-    if choice == "1":
-        record = terminal_view.get_inputs(['Month: ','Day: ', 'Year: ', 'Type (in or out)', 'Amount in USD: '], "Please provide transaction data you wish to add: ")
-        accounting.add(table, record)
-    elif choice == "2":
-        terminal_view.print_table(table, title_list)
-        remove_record_sn = terminal_view.get_inputs([''], "Please provide a number of transaction you wish to remove: ")
-        index = remove_record_sn[0]
-        id_ = find_id(table, index)
-        accounting.remove(table, id_)
-    elif choice == "3":
-        accounting.update(table, id_, record)
-    elif choice == "4":
-        accounting.which_year_max(table)
-    elif choice == "5":
-        year = terminal_view.get_inputs(['Year: '], "Please provide a year: ")
-        accounting.avg_amount(table, year)
-    elif choice == "0":
-        pass
-    else:
-        terminal_view.print_error_message("There is no such choice.")
+    choice = None
+    while choice != "0":
+        choice = terminal_view.get_choice('Accounting', options, 'Exit program')
+        if choice == "1":
+            record = terminal_view.get_inputs(['Month: ','Day: ', 'Year: ', 'Type (in or out)', 'Amount in USD: '], "Please provide transaction data you wish to add: ")
+            accounting.add(table, record)
+        elif choice == "2":
+            terminal_view.print_table(table, title_list)
+            remove_record_sn = terminal_view.get_inputs([''], "Please provide a number of transaction you wish to remove: ")
+            index = remove_record_sn[0]
+            id_ = common.find_id(table, index)
+            accounting.remove(table, id_)
+        elif choice == "3":
+            terminal_view.print_table(table, title_list)
+            update_record_sn = terminal_view.get_inputs([''], "Please provide a number of transaction you wish to update: ")
+            record = terminal_view.get_inputs(['Month: ','Day: ', 'Year: ', 'Type (in or out)', 'Amount in USD: '], "Please provide new data: ")
+            index = update_record_sn[0]
+            id_ = common.find_id(table, index)
+            accounting.update(table, id_, record)
+        elif choice == "4":
+            accounting.which_year_max(table)
+        elif choice == "5":
+            user_year = terminal_view.get_inputs(['Year: '], "Please provide a year: ")
+            year = int(user_year[0])
+            accounting.avg_amount(table, year)
+        else:
+            terminal_view.print_error_message("There is no such choice.")
