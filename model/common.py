@@ -78,3 +78,36 @@ def remove(table, id_):
     ID = 0
     table = [record for record in table if record[ID] != id_]
     return table
+
+
+def update(table, id_, record):
+    """
+    Updates specified record in the table.
+
+    Args:
+        table: list in which record should be updated
+        id_ (str): id of a record to update
+        record (list): updated record
+
+    Returns:
+        list: table with updated record
+    """
+
+    # your code
+    ID = 0
+
+    def find_record_index(id_):
+        for index, record in enumerate(table):
+            if record[ID] == id_:
+                return index
+
+    record_index = find_record_index(id_)
+
+    record.insert(0, 'fake_id')
+    for i, _ in enumerate(record):
+        if i == ID:
+            pass
+        else:
+            table[record_index][i] = record[i]
+
+    return table
