@@ -81,7 +81,32 @@ def which_year_max(table):
         number
     """
 
-    # your code
+    year_index = 3
+    type_index = 4
+    amount_index = 5
+    year_profit = {}
+    max_profit = 0
+    for single_list in table:
+        if single_list[year_index] in year_profit.keys():
+            if single_list[type_index] == "in":
+                year_profit[single_list[year_index]] += float(single_list[amount_index])
+            elif single_list[type_index] == "out":
+                year_profit[single_list[year_index]] -= float(single_list[amount_index])
+        else:
+            if single_list[type_index] == "in":
+                year_profit[single_list[year_index]] = float(single_list[amount_index])
+            elif single_list[type_index] == "out":
+                year_profit[single_list[year_index]] = -(float(single_list[amount_index]))
+    for key, value in year_profit.items():
+        if value > max_profit:
+            max_profit = value
+            max_profit_year = key
+    
+    return max_profit_year
+
+           
+
+
 
 
 def avg_amount(table, year):
