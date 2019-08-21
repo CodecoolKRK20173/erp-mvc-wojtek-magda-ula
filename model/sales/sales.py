@@ -15,6 +15,8 @@ from model import data_manager
 from model import common
 
 
+MAX_PRICE = 9999
+
 ID = 0
 TITLE = 1
 PRICE = 2
@@ -94,7 +96,7 @@ def get_lowest_price_item_id(table):
                     lst[j], lst[j+1] = lst[j+1], lst[j]
         return lst
 
-    min_price = 999
+    min_price = MAX_PRICE
     for sale in table:
         try:
             sale_price = int(sale[PRICE])
@@ -116,7 +118,7 @@ def get_lowest_price_item_id(table):
     return [sale[ID] for sale in table if sale[TITLE] == result][0]
 
 
-def get_items_sold_between(table, *dates):
+def get_items_sold_between(table, dates):
     """
     Question: Which items are sold between two given dates? (from_date < sale_date < to_date)
 
@@ -143,14 +145,14 @@ def get_items_sold_between(table, *dates):
     dates = [int(date) for date in dates]
 
     def is_within_date_range(sale_year, sale_month, sale_day, dates):
-        if not dates[YEAR_FROM] <= int(sale_year) <= dates[YEAR_TO]:
+        if not dates[YEAR_FROM] <= sale_year <= dates[YEAR_TO]:
             return False
-        if int(sale_year) == dates[YEAR_FROM] or int(sale_year) == dates[YEAR_TO]:
-            if not dates[MONTH_FROM] <= int(sale_month) <= dates[MONTH_TO]:
+        if sale_year == dates[YEAR_FROM] or sale_year == dates[YEAR_TO]:
+            if not dates[MONTH_FROM] <= sale_month <= dates[MONTH_TO]:
                 return False
-            if int(sale_month) == dates[MONTH_FROM] or int(sale_month) == dates[MONTH_TO]:
-                if not dates[DAY_FROM] <= int(sale_day) <= dates[DAY_TO]:
+            if sale_month == dates[MONTH_FROM] or sale_month == dates[MONTH_TO]:
+                if not dates[DAY_FROM] <= sale_day <= dates[DAY_TO]:
                     return False
         return True
 
-    return [sale for sale in table if is_within_date_range(sale[YEAR], sale[MONTH], sale[DAY], dates)]
+    return [sale for sale in table if is_within_date_range(int(sale[YEAR]), int(sale[MONTH]), int(sale[DAY]), dates)]
