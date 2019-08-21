@@ -28,7 +28,8 @@ def generate_random(table):
 
 
 def __generate():
-    special_characters = list(map(chr, range(33, 39))) + list(map(chr, range(40, 48)))
+    special_characters = list(map(chr, range(33, 39))) + \
+        list(map(chr, range(40, 48)))
     numbers = [str(number) for number in list(range(10))]
     lowercase = list(map(chr, range(97, 123)))
     uppercase = [chr.upper() for chr in lowercase]
@@ -41,3 +42,39 @@ def __generate():
     generated = id_special + id_numbers + id_lowercase + id_uppercase
     random.shuffle(generated)
     return ''.join(generated)
+
+
+def add(table, record):
+    """
+    Add new record to table
+
+    Args:
+        table (list): table to add new record to
+        record (list): new record
+
+    Returns:
+        list: Table with a new record
+    """
+    # your code
+    id_ = generate_random(table)
+    record.insert(0, id_)
+    table.append(record)
+    return table
+
+
+def remove(table, id_):
+    """
+    Remove a record with a given id from the table.
+
+    Args:
+        table (list): table to remove a record from
+        id_ (str): id of a record to be removed
+
+    Returns:
+        list: Table without specified record.
+    """
+
+    # your code
+    ID = 0
+    table = [record for record in table if record[ID] != id_]
+    return table

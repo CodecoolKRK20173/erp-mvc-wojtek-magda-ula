@@ -35,10 +35,7 @@ def add(table, record):
         list: Table with a new record
     """
     # your code
-    id_ = common.generate_random(table)
-    record.insert(0, id_)
-    table.append(record)
-    return table
+    return common.add(table, record)
 
 
 def remove(table, id_):
@@ -54,8 +51,7 @@ def remove(table, id_):
     """
 
     # your code
-    table = [record for record in table if record[ID] != id_]
-    return table
+    return common.remove(table, id_)
 
 
 def update(table, id_, record):
