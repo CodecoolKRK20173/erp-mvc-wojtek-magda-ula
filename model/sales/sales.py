@@ -15,12 +15,22 @@ from model import data_manager
 from model import common
 
 
+MODEL_FILE = 'model/sales/sales.csv'
+
 ID = 0
 TITLE = 1
 PRICE = 2
 MONTH = 3
 DAY = 4
 YEAR = 5
+
+
+def get_table():
+    return data_manager.get_table_from_file(MODEL_FILE)
+
+
+def save_table_to_file(table):
+    data_manager.write_table_to_file(MODEL_FILE, table)
 
 
 def add(table, record):

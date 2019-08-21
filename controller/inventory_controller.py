@@ -15,7 +15,6 @@ def run():
     """
 
     # your code
-    DB_FILENAME = 'model/inventory/inventory.csv'
     options = ["Add a new item",
                "Remove a item",
                "Update a item",
@@ -28,7 +27,7 @@ def run():
                   'Durability']
     is_running = True
     while is_running is True:
-        table = common.get_table(DB_FILENAME)
+        table = inventory.get_table()
         choice = terminal_view.get_choice(
             'Inventory menu',
             options,
@@ -42,14 +41,14 @@ def run():
                  'Durability: '],
                 'Please provide item information: ')
             updated_table = inventory.add(table, item)
-            common.save_table_to_file(updated_table, DB_FILENAME)
+            inventory.save_table_to_file(updated_table)
         elif choice == "2":
             terminal_view.print_table(table, title_list)
             index = terminal_view.get_inputs(
                 ['Choose Id of an item to be removed: '], '')
             id_ = common.find_id(table, int(index[0]))
             updated_table = inventory.remove(table, id_)
-            common.save_table_to_file(updated_table, DB_FILENAME)
+            inventory.save_table_to_file(updated_table)
         elif choice == "3":
             terminal_view.print_table(table, title_list)
             index = terminal_view.get_inputs(
@@ -62,7 +61,7 @@ def run():
                  'Durability: '],
                 'Please provide updated information for this item: ')
             updated_table = inventory.update(table, id_, item)
-            common.save_table_to_file(updated_table, DB_FILENAME)
+            inventory.save_table_to_file(updated_table)
         elif choice == "4":
             filtered_table = inventory.get_available_items(table)
             terminal_view.print_table(filtered_table, title_list)

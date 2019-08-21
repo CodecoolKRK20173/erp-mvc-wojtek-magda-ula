@@ -14,6 +14,8 @@ from model import data_manager
 from model import common
 
 
+MODEL_FILE = 'model/inventory/inventory.csv'
+
 ID = 0
 NAME = 1
 MANUFACTURER = 2
@@ -21,6 +23,14 @@ PURCHASE_YEAR = 3
 DURABILITY = 4
 
 CURRENT_YEAR = 2019
+
+
+def get_table():
+    return data_manager.get_table_from_file(MODEL_FILE)
+
+
+def save_table_to_file(table):
+    data_manager.write_table_to_file(MODEL_FILE, table)
 
 
 def add(table, record):

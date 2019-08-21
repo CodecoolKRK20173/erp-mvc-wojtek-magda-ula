@@ -15,7 +15,6 @@ def run():
     """
 
     # your code
-    DB_FILENAME = 'model/sales/sales.csv'
     options = ["Add a new sale",
                "Remove a sale",
                "Update a sale",
@@ -29,7 +28,7 @@ def run():
                   'Year']
     is_running = True
     while is_running is True:
-        table = common.get_table(DB_FILENAME)
+        table = sales.get_table()
         choice = terminal_view.get_choice(
             'Sales menu',
             options,
@@ -44,14 +43,14 @@ def run():
                  'Year'],
                 'Please provide sale information: ')
             updated_table = sales.add(table, sale)
-            common.save_table_to_file(updated_table, DB_FILENAME)
+            sales.save_table_to_file(updated_table)
         elif choice == "2":
             terminal_view.print_table(table, title_list)
             index = terminal_view.get_inputs(
                 ['Choose Id of a sale to be removed: '], '')
             id_ = common.find_id(table, int(index[0]))
             updated_table = sales.remove(table, id_)
-            common.save_table_to_file(updated_table, DB_FILENAME)
+            sales.save_table_to_file(updated_table)
         elif choice == "3":
             terminal_view.print_table(table, title_list)
             index = terminal_view.get_inputs(
@@ -65,7 +64,7 @@ def run():
                  'Year'],
                 'Please provide updated information for this sale: ')
             updated_table = sales.update(table, id_, sale)
-            common.save_table_to_file(updated_table, DB_FILENAME)
+            sales.save_table_to_file(updated_table)
         elif choice == "4":
             id_ = sales.get_lowest_price_item_id(table)
             terminal_view.print_result(id_, 'ID: ')

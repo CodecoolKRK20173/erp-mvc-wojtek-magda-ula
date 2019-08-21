@@ -13,12 +13,21 @@ Data table structure:
 from model import data_manager
 from model import common
 
+MODEL_FILE = 'model/store/games.csv'
 
 ID = 0
 TITLE = 1
 MANUFACTURER = 2
 PRICE = 3
 IN_STOCK = 4
+
+
+def get_table():
+    return data_manager.get_table_from_file(MODEL_FILE)
+
+
+def save_table_to_file(table):
+    data_manager.write_table_to_file(MODEL_FILE, table)
 
 
 def add(table, record):
