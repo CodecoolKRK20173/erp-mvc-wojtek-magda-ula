@@ -35,11 +35,34 @@ def run():
             'Back to main menu')
 
         if choice == "1":
-            pass
+            item = terminal_view.get_inputs(
+                ['Name: ',
+                 'Manufacturer: ',
+                 'Purchase year: ',
+                 'Durability: '],
+                'Please provide item information: ')
+            updated_table = inventory.add(table, item)
+            common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "2":
-            pass
+            terminal_view.print_table(table, title_list)
+            index = terminal_view.get_inputs(
+                ['Choose Id of an item to be removed: '], '')
+            id_ = common.find_id(table, int(index[0]))
+            updated_table = inventory.remove(table, id_)
+            common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "3":
-            pass
+            terminal_view.print_table(table, title_list)
+            index = terminal_view.get_inputs(
+                ['Choose Id of the item to be edited: '], '')
+            id_ = common.find_id(table, int(index[0]))
+            item = terminal_view.get_inputs(
+                ['Name: ',
+                 'Manufacturer: ',
+                 'Purchase year: ',
+                 'Durability: '],
+                'Please provide updated information for this item: ')
+            updated_table = inventory.update(table, id_, item)
+            common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "4":
             pass
         elif choice == "5":
