@@ -70,7 +70,32 @@ def run():
             id_ = sales.get_lowest_price_item_id(table)
             terminal_view.print_result(id_, 'ID: ')
         elif choice == "5":
-            pass
+            MONTH_FROM = 0
+            DAY_FROM = 1
+            YEAR_FROM = 2
+            MONTH_TO = 3
+            DAY_TO = 4
+            YEAR_TO = 5
+
+            dates = terminal_view.get_inputs(
+                ['Month from: ',
+                 'Day from: ',
+                 'Year from: ',
+                 'Month to: ',
+                 'Day to: ',
+                 'Year to: '],
+                'Please provide the dates: '
+            )
+            filtered_table = sales.get_items_sold_between(
+                table,
+                dates[MONTH_FROM],
+                dates[DAY_FROM],
+                dates[YEAR_FROM],
+                dates[MONTH_TO],
+                dates[DAY_TO],
+                dates[YEAR_TO]
+            )
+            terminal_view.print_table(filtered_table, title_list)
         elif choice == "0":
             is_running = False
         else:
