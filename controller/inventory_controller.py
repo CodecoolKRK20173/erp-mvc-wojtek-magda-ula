@@ -67,7 +67,8 @@ def run():
             filtered_table = inventory.get_available_items(table)
             terminal_view.print_table(filtered_table, title_list)
         elif choice == "5":
-            pass
+            terminal_view.print_result(inventory.get_average_durability_by_manufacturers(
+                table), 'Average durability by manufacturer: ')
         elif choice == "0":
             is_running = False
         else:

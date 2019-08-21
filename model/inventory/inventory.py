@@ -107,3 +107,12 @@ def get_average_durability_by_manufacturers(table):
     """
 
     # your code
+    def get_durability_average(manufacturer, table):
+        durabilities = [item[DURABILITY]
+                        for item in table if item[MANUFACTURER] == manufacturer]
+        sum_ = 0
+        for number in durabilities:
+            sum_ += int(number)
+        return sum_ / len(durabilities)
+
+    return {item[MANUFACTURER]: get_durability_average(item[MANUFACTURER], table) for item in table}
