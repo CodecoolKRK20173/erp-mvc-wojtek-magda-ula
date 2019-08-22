@@ -72,7 +72,21 @@ def print_result(result, label):
     Returns:
         None: This function doesn't return anything it only prints to console.
     """
-    print(label + ": " + str(result))
+    if type(result) == str:
+        print(label + ": " + str(result)+"\n")
+
+    elif type(result) == list:
+        print(label + ": ")
+        for element in result:
+            print(element)
+        print("\n")
+
+    elif type(result) == dict:
+        print(label + ": ")
+        for k,v in result.items():
+            print(k + ":", v)
+        print("\n")
+
 
 
 def print_menu(title, list_options, exit_message):
