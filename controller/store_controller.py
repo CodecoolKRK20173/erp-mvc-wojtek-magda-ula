@@ -67,14 +67,14 @@ def run():
         elif choice == "4":
             count = store.get_counts_by_manufacturers(table)
             terminal_view.print_result(
-                count, 'Count of games available for each manufacturer: ')
+                count, 'Count of games available for each manufacturer')
         elif choice == "5":
             manufacturer = terminal_view.get_inputs(
                 ['Manufacturer: '], '')
             average_stock = store.get_average_by_manufacturer(
                 table, manufacturer[0])
             terminal_view.print_result(
-                str(average_stock), 'Average game stock: ')
+                str(average_stock), 'Average game stock')
         elif choice == "0":
             is_running = False
         else:
