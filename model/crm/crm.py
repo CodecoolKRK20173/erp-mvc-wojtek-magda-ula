@@ -12,6 +12,11 @@ Data table structure:
 from model import data_manager
 from model import common
 
+ID_INDEX = 0
+NAME_INDEX = 1
+E_MAIL_INDEX = 2 
+SUBSCRIPTION_INDEX = 3
+
 
 def add(table, record):
     """
@@ -26,7 +31,7 @@ def add(table, record):
     """
     # your code
 
-    return table
+    return common.add(table, record)
 
 
 def remove(table, id_):
@@ -43,7 +48,7 @@ def remove(table, id_):
 
     # your code
 
-    return table
+    return common.remove(table, id_)
 
 
 def update(table, id_, record):
@@ -61,7 +66,7 @@ def update(table, id_, record):
 
     # your code
 
-    return table
+    return common.update(table, id_, record)
 
 
 # special functions:
