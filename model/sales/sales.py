@@ -96,15 +96,14 @@ def get_lowest_price_item_id(table):
                     sales[i], sales[i + 1] = sales[i + 1], sales[i]
         return sales
 
-    min_price = MAX_PRICE
-    for sale in table:
+    def convert_to_number(price):
         try:
-            sale_price = int(sale[PRICE])
+            price = int(price)
         except ValueError:
-            sale_price = float(sale[PRICE])
+            price = float(price)
+        return price
 
-        if sale_price < min_price:
-            min_price = sale_price
+    min_price = min([convert_to_number(sale[PRICE]) for sale in table])
 
     lowest_priced_items = [[sale[ID], sale[TITLE]]
                            for sale in table if sale[PRICE] == str(min_price)]
