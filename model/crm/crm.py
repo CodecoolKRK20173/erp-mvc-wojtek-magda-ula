@@ -101,13 +101,6 @@ def get_longest_name_id(table):
         if single_list[NAME_INDEX] == max_len_name:
             return single_list[ID_INDEX]
 
-    
-
-
-
-
-
-
 
 # the question: Which customers has subscribed to the newsletter?
 # return type: list of strings (where string is like email+separator+name, separator=";")
@@ -123,15 +116,13 @@ def get_subscribed_emails(table):
         """
 
     subscribers = {}
+    subscribers_list = []
 
     for single_list in table:
         if int(single_list[SUBSCRIPTION_INDEX]) == 1:
             subscribers[single_list[E_MAIL_INDEX]] = single_list[NAME_INDEX]
-    
-    subscribers_list = []
 
     for key, value in subscribers.items():
         subscriber = key + ';' + value
         subscribers_list.append(subscriber)
-    return subscribers_list        
-    
+    return subscribers_list
