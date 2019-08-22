@@ -23,7 +23,7 @@ def run():
                "See average budget for all adverts"]
     title_list = ['Id',
                   'Name',
-                  'Role',
+                  'Objective',
                   'Start year',
                   'End year'
                   'Budget']
