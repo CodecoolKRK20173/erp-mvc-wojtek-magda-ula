@@ -27,7 +27,6 @@ def run():
     is_running = True
     while is_running is True:
         table = common.get_table(DB_FILENAME)
-        #terminal_view.print_table(table, title_list)
         choice = terminal_view.get_choice(
             'HR menu',
             options,
@@ -42,7 +41,8 @@ def run():
                 'Please provide person information')
             updated_table = hr.add(table, person)
             common.save_table_to_file(updated_table, DB_FILENAME)
-        
+
+    
 
         elif choice == "2":
             index = terminal_view.get_inputs(
