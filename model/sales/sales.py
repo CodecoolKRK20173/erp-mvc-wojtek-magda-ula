@@ -15,8 +15,6 @@ from model import data_manager
 from model import common
 
 
-MAX_PRICE = 9999
-
 ID = 0
 TITLE = 1
 PRICE = 2

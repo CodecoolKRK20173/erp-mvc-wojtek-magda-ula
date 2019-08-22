@@ -67,7 +67,8 @@ def run():
             updated_table = marketing.update(table, id_, game)
             common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "4":
-            pass
+            ads = marketing.get_acive_ads(table)
+            terminal_view.print_table(ads, title_list)
         elif choice == "5":
             pass
         elif choice == "0":
