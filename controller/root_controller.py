@@ -6,6 +6,7 @@ from controller import inventory_controller
 from controller import accounting_controller
 from controller import sales_controller
 from controller import crm_controller
+from controller import marketing_controller
 from controller import common
 
 
@@ -32,6 +33,8 @@ def run():
             sales_controller.run()
         elif choice == "6":
             crm_controller.run()
+        elif choice == "7":
+            marketing_controller.run()
         elif choice == "0":
             is_running = False
         else:
