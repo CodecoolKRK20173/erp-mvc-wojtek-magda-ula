@@ -70,7 +70,9 @@ def run():
             ads = marketing.get_acive_ads(table)
             terminal_view.print_table(ads, title_list)
         elif choice == "5":
-            pass
+            avg_budget = marketing.get_average_budget(table)
+            terminal_view.print_result(
+                avg_budget, 'Average budget for all adverts: ')
         elif choice == "0":
             is_running = False
         else:
