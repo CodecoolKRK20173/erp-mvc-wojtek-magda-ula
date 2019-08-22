@@ -40,20 +40,18 @@ def run():
         elif choice == "3":
             terminal_view.print_table(table, title_list)
             update_record_sn = terminal_view.get_inputs([''], "Please provide a number of transaction you wish to update: ")
-            record = terminal_view.get_inputs(['Month: ','Day: ', 'Year: ', 'Type (in or out)', 'Amount in USD: '], "Please provide new data: ")
+            record = terminal_view.get_inputs(["Name", "E-mail", "Subscribed a newsletter? 1 if yes, 0 if no"], "Please provide new data: ")
             index = int(update_record_sn[0])
             id_ = common.find_id(table, index)
-            table = accounting.update(table, id_, record)
+            table = crm.update(table, id_, record)
             common.save_table_to_file(table, FILE_NAME)
         elif choice == "4":
-            result = accounting.which_year_max(table)
-            label = 'A year of the highest profit is'
+            result = crm.get_longest_name_id(table)
+            label = 'The ID of the customer with the longest name is'
             terminal_view.print_result(result, label)
         elif choice == "5":
-            user_year = terminal_view.get_inputs(['Year: '], "Please provide a year: ")
-            year = user_year[0]
-            result = accounting.avg_amount(table, year)
-            label = 'The average (per item) profit is'
+            result = crm.get_subscribed_emails(table)
+            label = 'Customers that have subscribed to the newsletter'
             terminal_view.print_result(result, label)
         elif choice == "0":
             is_running = False
