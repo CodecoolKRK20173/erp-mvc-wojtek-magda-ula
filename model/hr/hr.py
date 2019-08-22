@@ -12,7 +12,7 @@ from model import data_manager
 from model import common
 
 ID = 0
-PERSON = 1
+PERSON_NAME = 1
 YEAR = 2
 
 
@@ -73,7 +73,7 @@ def update(table, id_, record):
                 return index
 
     record_index = find_record_index(id_)
-    table[record_index][PERSON], table[record_index][YEAR] = record
+    table[record_index][PERSON_NAME], table[record_index][YEAR] = record
     return table
 
 
@@ -92,6 +92,19 @@ def get_oldest_person(table):
     """
 
     # your code
+    min_year = int(table[0][YEAR])
+
+    for person in table:        
+        if int(person[YEAR]) < min_year:
+            min_year = int(person[YEAR])
+
+    selected_people = []
+    for person in table:
+        if int(person[YEAR]) == min_year:
+            selected_people.append(person[PERSON_NAME])
+
+    return selected_people
+
 
 
 def get_persons_closest_to_average(table):
@@ -106,3 +119,40 @@ def get_persons_closest_to_average(table):
     """
 
     # your code
+    # record = int(table[YEAR])
+    # divide_number = 10
+
+    # for person in table:
+    #     if int(person[YEAR]) == record:
+
+    calc = 0
+    for person in table:
+        calc = calc + int(person[YEAR])
+    avg = calc / len(table)
+    
+    # diff = 0
+    # diff = int(person[YEAR]) - avg
+    # for person in table: 
+    #     diff = int(person[YEAR]) - avg
+    #     if avg > diff:
+    #         person = 
+
+    first_list_in_table = 0
+    min_diff = abs(avg - (int(table[first_list_in_table][YEAR])))
+    year_of_min_diff = table[first_list_in_table][YEAR]
+    for person in table:
+        diff = abs(avg - int(person[YEAR]))
+        if diff < min_diff:
+            min_diff = diff
+            year_of_min_diff = person[YEAR]
+    
+    selected_people = []
+    for person in table:
+        if int(person[YEAR]) == int(year_of_min_diff):
+            selected_people.append(person[PERSON_NAME])
+
+    return selected_people
+
+
+
+

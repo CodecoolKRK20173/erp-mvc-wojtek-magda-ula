@@ -21,33 +21,57 @@ def run():
                "Who is the oldest person?",
                "Who is the closest to the average age?"]
     title_list = ['Id',
-    'Person',
-    'Year']
+                'Person',
+                'Year']
 
     is_running = True
     while is_running is True:
         table = common.get_table(DB_FILENAME)
-        terminal_view.print_table(table, title_list)
+        #terminal_view.print_table(table, title_list)
         choice = terminal_view.get_choice(
             'HR menu',
             options,
             'Back to main menu')
 
 
-    choice = None
-    while choice != "0":
-        choice = terminal_view.get_choice(options)
+   
         if choice == "1":
-            store_controller.run()
+            person = terminal_view.get_inputs(
+                ['Person',
+                 'Year'],
+                'Please provide person information')
+            updated_table = hr.add(table, person)
+            common.save_table_to_file(updated_table, DB_FILENAME)
+        
+
         elif choice == "2":
-            hr_controller.run()
+            index = terminal_view.get_inputs(
+                ['Choose Id of person to be removed: '], '')
+            id_ = common.find_id(table, int(index[0]))
+            updated_table = hr.remove(table, id_)
+            common.save_table_to_file(updated_table, DB_FILENAME)
+
+        
         elif choice == "3":
-            inventory_controller.run()
+            index = terminal_view.get_inputs(
+                ['Choose Id of person to be edited: '], '')
+            id_ = common.find_id(table, int(index[0]))
+            person = terminal_view.get_inputs(
+                ['Person',
+                 'Year'],
+                'Please provide updated information of this person: ')
+            updated_table = hr.update(table, id_, person)
+            common.save_table_to_file(updated_table, DB_FILENAME)
+            
         elif choice == "4":
-            accounting_controller.run()
+            result = hr.get_oldest_person(table)
+            label = "The oldest person are"
+            terminal_view.print_result(result, label)
         elif choice == "5":
-            sales_controller.run()
-        elif choice == "6":
-            crm_controller.run()
+            result = hr.get_persons_closest_to_average(table)
+            label = "The closest average age are"
+            terminal_view.print_result(result, label)
+        elif choice == "0":
+            is_running = False
         else:
             terminal_view.print_error_message("There is no such choice.")
