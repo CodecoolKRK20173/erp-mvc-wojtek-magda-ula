@@ -29,11 +29,8 @@ def add(table, record):
         list: Table with a new record
     """
     # your code
+    return common.add(table, record)
     
-    id = common.generate_random(table)
-    record.insert(0, id)
-    table.append(record)
-    return table
 
 
 def remove(table, id_):
@@ -49,8 +46,7 @@ def remove(table, id_):
     """
 
     # your code
-    table = [record for record in table if record[ID] != id_]
-    return table
+    return common.remove(table, id_)
 
 
 def update(table, id_, record):
@@ -67,14 +63,7 @@ def update(table, id_, record):
     """
 
     # your code
-    def find_record_index(id_):
-        for index, record in enumerate(table):
-            if record[ID] == id_:
-                return index
-
-    record_index = find_record_index(id_)
-    table[record_index][PERSON_NAME], table[record_index][YEAR] = record
-    return table
+    return common.update(table, id_, record)
 
 
 # special functions:
@@ -119,24 +108,12 @@ def get_persons_closest_to_average(table):
     """
 
     # your code
-    # record = int(table[YEAR])
-    # divide_number = 10
-
-    # for person in table:
-    #     if int(person[YEAR]) == record:
-
+   
     calc = 0
     for person in table:
         calc = calc + int(person[YEAR])
     avg = calc / len(table)
     
-    # diff = 0
-    # diff = int(person[YEAR]) - avg
-    # for person in table: 
-    #     diff = int(person[YEAR]) - avg
-    #     if avg > diff:
-    #         person = 
-
     first_list_in_table = 0
     min_diff = abs(avg - (int(table[first_list_in_table][YEAR])))
     year_of_min_diff = table[first_list_in_table][YEAR]
