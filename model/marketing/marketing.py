@@ -22,6 +22,8 @@ START_YEAR = 3
 END_YEAR = 4
 BUDGET = 5
 
+CURRENT_YEAR = 2019
+
 
 def add(table, record):
     """
@@ -77,9 +79,9 @@ def update(table, id_, record):
 # special functions:
 # ------------------
 
-def get_available_items(table):
+def get_acive_ads(table):
     """
-    Question: Which items have not exceeded their durability yet?
+    Question: Which adverts did not terminate yet?
 
     Args:
         table (list): data table to work on
@@ -89,7 +91,16 @@ def get_available_items(table):
     """
 
     # your code
-    pass
+    def is_active(year):
+        if not year:
+            return True
+        else:
+            if year == '2019':
+                return True
+            else:
+                return False
+
+    return [ad for ad in table if is_active(ad[END_YEAR])]
 
 
 def get_average_durability_by_manufacturers(table):
