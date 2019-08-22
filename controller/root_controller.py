@@ -17,8 +17,8 @@ def run():
                "Sales manager",
                "Customer Relationship Management (CRM)"]
 
-    choice = None
-    while choice != "0":
+    is_running = True
+    while is_running is True:
         choice = terminal_view.get_choice('Main menu', options, 'Exit program')
         if choice == "1":
             store_controller.run()
@@ -32,5 +32,7 @@ def run():
             sales_controller.run()
         elif choice == "6":
             crm_controller.run()
+        elif choice == "0":
+            is_running = False
         else:
             terminal_view.print_error_message("There is no such choice.")
