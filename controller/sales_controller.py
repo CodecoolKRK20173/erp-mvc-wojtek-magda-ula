@@ -68,7 +68,7 @@ def run():
             common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "4":
             id_ = sales.get_lowest_price_item_id(table)
-            terminal_view.print_result(id_, 'ID: ')
+            terminal_view.print_result(id_, 'ID')
         elif choice == "5":
             dates = terminal_view.get_inputs(
                 ['Month from: ',

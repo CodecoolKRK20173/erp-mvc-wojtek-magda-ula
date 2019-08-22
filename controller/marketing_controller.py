@@ -72,7 +72,7 @@ def run():
         elif choice == "5":
             avg_budget = marketing.get_average_budget(table)
             terminal_view.print_result(
-                avg_budget, 'Average budget for all adverts: ')
+                avg_budget, 'Average budget for all adverts')
         elif choice == "0":
             is_running = False
         else:
