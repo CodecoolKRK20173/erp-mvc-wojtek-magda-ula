@@ -25,7 +25,7 @@ def run():
                   'Name',
                   'Objective',
                   'Start year',
-                  'End year'
+                  'End year',
                   'Budget']
     is_running = True
     while is_running is True:
@@ -36,11 +36,36 @@ def run():
             'Back to main menu')
 
         if choice == "1":
-            pass
+            game = terminal_view.get_inputs(
+                ['Name',
+                 'Objective',
+                 'Start year',
+                 'End year',
+                 'Budget'],
+                'Please provide advert information')
+            updated_table = marketing.add(table, game)
+            common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "2":
-            pass
+            terminal_view.print_table(table, title_list)
+            index = terminal_view.get_inputs(
+                ['Choose Id of the advert to be removed: '], '')
+            id_ = common.find_id(table, int(index[0]))
+            updated_table = marketing.remove(table, id_)
+            common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "3":
-            pass
+            terminal_view.print_table(table, title_list)
+            index = terminal_view.get_inputs(
+                ['Choose Id of the advert to be edited: '], '')
+            id_ = common.find_id(table, int(index[0]))
+            game = terminal_view.get_inputs(
+                ['Name',
+                 'Objective',
+                 'Start year',
+                 'End year',
+                 'Budget'],
+                'Please provide updated information for this game: ')
+            updated_table = marketing.update(table, id_, game)
+            common.save_table_to_file(updated_table, DB_FILENAME)
         elif choice == "4":
             pass
         elif choice == "5":
