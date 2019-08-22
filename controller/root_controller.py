@@ -16,7 +16,8 @@ def run():
                "Inventory manager",
                "Accounting manager",
                "Sales manager",
-               "Customer Relationship Management (CRM)"]
+               "Customer Relationship Management (CRM)",
+               "Marketing manager"]
 
     is_running = True
     while is_running is True:
