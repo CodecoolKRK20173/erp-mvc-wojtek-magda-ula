@@ -122,4 +122,16 @@ def get_subscribed_emails(table):
             list: list of strings (where a string is like "email;name")
         """
 
-    # your code
+    subscribers = {}
+
+    for single_list in table:
+        if int(single_list[SUBSCRIPTION_INDEX]) == 1:
+            subscribers[single_list[E_MAIL_INDEX]] = single_list[NAME_INDEX]
+    
+    subscribers_list = []
+
+    for key, value in subscribers.items():
+        subscriber = key + ';' + value
+        subscribers_list.append(subscriber)
+    return subscribers_list        
+    
