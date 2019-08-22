@@ -103,16 +103,20 @@ def get_acive_ads(table):
     return [ad for ad in table if is_active(ad[END_YEAR])]
 
 
-def get_average_durability_by_manufacturers(table):
+def get_average_budget(table):
     """
-    Question: What are the average durability times for each manufacturer?
+    Question: What is the average budget for all ads in the table?
 
     Args:
         table (list): data table to work on
 
     Returns:
-        dict: a dictionary with this structure: { [manufacturer] : [avg] }
+        number: average budget
     """
 
     # your code
-    pass
+    budgets = [ad[BUDGET] for ad in table]
+    sum_ = 0
+    for budget in budgets:
+        sum_ += float(budget)
+    return sum_ / len(budgets)
