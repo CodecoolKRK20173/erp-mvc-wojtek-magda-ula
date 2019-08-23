@@ -96,12 +96,12 @@ def update(table, id_, record):
     # your code
     ID = 0
 
-    def find_record_index(id_):
+    def find_record_indx(id_):
         for index, record in enumerate(table):
             if record[ID] == id_:
                 return index
 
-    record_index = find_record_index(id_)
+    record_index = find_record_indx(id_)
 
     record.insert(0, 'fake_id')
     for i, _ in enumerate(record):
