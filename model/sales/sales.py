@@ -87,7 +87,7 @@ def get_lowest_price_item_id(table):
     """
 
     # your code
-    def bubble_sort(sales):
+    def bubble_srt(sales):
         for iterations in range(len(sales)):
             for i in range(0, len(sales) - iterations - 1):
                 if sales[i][TITLE] > sales[i + 1][TITLE]:
@@ -107,7 +107,7 @@ def get_lowest_price_item_id(table):
                            for sale in table if sale[PRICE] == str(min_price)]
 
     if len(lowest_priced_items) > 1:
-        lowest_priced_items_sorted = bubble_sort(lowest_priced_items)
+        lowest_priced_items_sorted = bubble_srt(lowest_priced_items)
         return lowest_priced_items_sorted[-1][ID]
     else:
         return lowest_priced_items[0][ID]
