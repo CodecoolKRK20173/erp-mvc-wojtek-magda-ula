@@ -79,7 +79,17 @@ def run():
                  'Year to: '],
                 'Please provide the dates: '
             )
-            filtered_table = sales.get_items_sold_between(table, dates)
+            month_from, day_from, year_from, month_to, day_to, year_to = dates
+            filtered_table = sales.get_items_sold_between(
+                table,
+                month_from,
+                day_from,
+                year_from,
+                month_to,
+                day_to,
+                year_to
+            )
+            print(filtered_table)
             terminal_view.print_table(filtered_table, title_list)
         elif choice == "0":
             is_running = False

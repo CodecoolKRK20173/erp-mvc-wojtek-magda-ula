@@ -20,7 +20,7 @@ MANUFACTURER = 2
 PURCHASE_YEAR = 3
 DURABILITY = 4
 
-CURRENT_YEAR = 2019
+CURRENT_YEAR = 2016
 
 
 def add(table, record):
@@ -92,7 +92,10 @@ def get_available_items(table):
     def is_available(purchase_year, durability):
         return not ((CURRENT_YEAR - int(purchase_year) > int(durability)))
 
-    return [item for item in table if is_available(item[PURCHASE_YEAR], item[DURABILITY])]
+    filtered_table = [item for item in table if is_available(
+        item[PURCHASE_YEAR], item[DURABILITY])]
+
+    return [[item[ID], item[NAME], item[MANUFACTURER], int(item[PURCHASE_YEAR]), int(item[DURABILITY])] for item in filtered_table]
 
 
 def get_average_durability_by_manufacturers(table):
