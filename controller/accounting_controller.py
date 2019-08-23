@@ -52,7 +52,7 @@ def run():
         elif choice == "5":
             user_year = terminal_view.get_inputs(['Year: '], "Please provide a year: ")
             year = user_year[0]
-            result = accounting.avg_amount(table, year)
+            result = str(accounting.avg_amount(table, year))
             label = 'The average (per item) profit is'
             terminal_view.print_result(result, label)
         elif choice == "0":

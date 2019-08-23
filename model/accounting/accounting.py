@@ -127,22 +127,22 @@ def avg_amount(table, year):
     year_profit = {}
     year_items_count = {}
     for single_list in table:
-        if single_list[YEAR_INDEX] in year_profit.keys():
+        if int(single_list[YEAR_INDEX]) in year_profit.keys():
             if single_list[TYPE_INDEX] == "in":
-                year_profit[single_list[YEAR_INDEX]] += float(single_list[AMOUNT_INDEX])
+                year_profit[int(single_list[YEAR_INDEX])] += float(single_list[AMOUNT_INDEX])
             elif single_list[TYPE_INDEX] == "out":
-                year_profit[single_list[YEAR_INDEX]] -= float(single_list[AMOUNT_INDEX])
-            year_items_count[single_list[YEAR_INDEX]] += 1
+                year_profit[int(single_list[YEAR_INDEX])] -= float(single_list[AMOUNT_INDEX])
+            year_items_count[int(single_list[YEAR_INDEX])] += 1
         else:
             if single_list[TYPE_INDEX] == "in":
-                year_profit[single_list[YEAR_INDEX]] = float(single_list[AMOUNT_INDEX])
+                year_profit[int(single_list[YEAR_INDEX])] = float(single_list[AMOUNT_INDEX])
             elif single_list[TYPE_INDEX] == "out":
-                year_profit[single_list[YEAR_INDEX]] = -(float(single_list[AMOUNT_INDEX]))
-            year_items_count[single_list[YEAR_INDEX]] = 1
+                year_profit[int(single_list[YEAR_INDEX])] = -(float(single_list[AMOUNT_INDEX]))
+            year_items_count[int(single_list[YEAR_INDEX])] = 1
     
-    profit = float(year_profit[year])
-    items_count = float(year_items_count[year])
+    profit = year_profit[year]
+    items_count = year_items_count[year]
 
-    return str(round((profit/items_count),2))
+    return float(profit)/float(items_count)
     
 
