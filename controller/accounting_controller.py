@@ -46,13 +46,13 @@ def run():
             table = accounting.update(table, id_, record)
             common.save_table_to_file(table, FILE_NAME)
         elif choice == "4":
-            result = accounting.which_year_max(table)
+            result = str(accounting.which_year_max(table))
             label = 'A year of the highest profit is'
             terminal_view.print_result(result, label)
         elif choice == "5":
             user_year = terminal_view.get_inputs(['Year: '], "Please provide a year: ")
-            year = user_year[0]
-            result = accounting.avg_amount(table, year)
+            year = int(user_year[0])
+            result = str(accounting.avg_amount(table, year))
             label = 'The average (per item) profit is'
             terminal_view.print_result(result, label)
         elif choice == "0":
