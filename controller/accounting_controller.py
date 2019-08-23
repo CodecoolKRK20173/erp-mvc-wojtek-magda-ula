@@ -46,7 +46,7 @@ def run():
             table = accounting.update(table, id_, record)
             common.save_table_to_file(table, FILE_NAME)
         elif choice == "4":
-            result = accounting.which_year_max(table)
+            result = str(accounting.which_year_max(table))
             label = 'A year of the highest profit is'
             terminal_view.print_result(result, label)
         elif choice == "5":

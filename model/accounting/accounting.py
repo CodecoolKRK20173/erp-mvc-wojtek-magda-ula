@@ -106,7 +106,7 @@ def which_year_max(table):
             max_profit = value
             max_profit_year = key
     
-    return str(max_profit_year)
+    return int(max_profit_year)
 
            
 
